@@ -53,20 +53,20 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     setUsers(users.sort(compareValues(sortKey, sortOrder)));
-    getCarsForCurrentPage();
+    getUserForCurrentPage();
     return () => {};
   }, [sortKey, sortOrder, users]);
 
   useEffect(() => {
     if (users) {
-      getCarsForCurrentPage();
+      getUserForCurrentPage();
     } else {
       setUsersInCurrentPage([]);
     }
     return () => {};
   }, [currentPage]);
 
-  const getCarsForCurrentPage = () => {
+  const getUserForCurrentPage = () => {
     const indexOfLastUserInPage = currentPage * usersPerPage;
     const indexOfFirstUserInPage = indexOfLastUserInPage - usersPerPage;
     setUsersInCurrentPage(
