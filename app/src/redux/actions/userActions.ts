@@ -3,8 +3,6 @@ import { IUser, IUserResponse } from "../../interfaces/user.type";
 import * as types from "../actionTypes/userActionTypes";
 import { gitHubServices } from "../../api/apiServices";
 
-import data from "../../_data/users.json";
-
 export const loadDataActionSuccess = (
   data: IUserResponse
 ): types.userActionType => {

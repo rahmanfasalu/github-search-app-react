@@ -5,8 +5,6 @@ import { IRepo, IRepoResponse } from "../../interfaces/repo.type";
 import * as types from "./../actionTypes/repoActionTypes";
 import { gitHubServices } from "../../api/apiServices";
 
-import data from "../../_data/users.json";
-
 export const loadRepoActionSuccess = (
   data: IRepoResponse
 ): types.repoActionType => {
