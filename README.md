@@ -8,6 +8,7 @@
 ```sh
 $ git clone https://github.com/rahmanfasalu/github-search-app-react.git
 $ cd github-search-app-react
+$ npm install
 $ npm start
 ```
 
