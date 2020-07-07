@@ -5,8 +5,8 @@ import axios from "axios";
 
 axios.interceptors.request.use(
   function (config: any) {
-    const token: string = "ssdsds";
-    config.headers["Authorization"] = `token ${token}`;
+    // const token: string = "your token";
+    // config.headers["Authorization"] = `token ${token}`;
     config.headers["Content-Type"] = "application/json";
     return config;
   },
