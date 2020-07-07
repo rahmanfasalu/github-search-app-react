@@ -1,16 +1,13 @@
 import { IUserResponse } from "./../interfaces/user.type";
-import {
-  GIT_AUTH_TOKEN,
-  API_SEARCH_USERS,
-} from "./../constants/app.config.constants";
+import { API_SEARCH_USERS } from "./../constants/app.config.constants";
 import { handleResponse, handleError } from "./apiUtils";
 import axios from "axios";
 
 axios.interceptors.request.use(
   function (config: any) {
-    const token: string = GIT_AUTH_TOKEN;
-    config.headers["Content-Type"] = "application/json";
+    const token: string = "ssdsds";
     config.headers["Authorization"] = `token ${token}`;
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (err: any) {
@@ -35,6 +32,9 @@ async function fetchUserData(api: string) {
       return handleResponse(response);
     })
     .catch((error: any) => {
+      alert(
+        "git hub limited access is over, please uncomment line number 8 & 9 in  app/src/api/apiServices.ts for to enable my personalised token and there by unlimited access"
+      );
       return handleError(error);
     });
 }

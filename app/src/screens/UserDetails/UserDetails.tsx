@@ -20,20 +20,33 @@ interface MatchProps extends RouteComponentProps<MatchParams> {}
 function UserDetails({ match }: MatchProps): JSX.Element {
   const dispatch = useDispatch();
   const [id] = useState<string>(match.params.id);
-  const userDetails: IUser = useSelector((state: IAppState) => {
+  let userDetails: IUser = useSelector((state: IAppState) => {
     return state.users.items.find((user: IUser) => user.id === parseInt(id));
   });
 
+  const [data, setData] = useState<IUser>(userDetails);
+
   useEffect(() => {
     if (!userDetails) {
+      let query = sessionStorage.getItem(`QUERY`);
+      if (query) {
+        let result = sessionStorage.getItem(`${query}`);
+        if (result) {
+          const userFromCache: IUser[] = JSON.parse(result).items;
+          userDetails = userFromCache.find(
+            (user: IUser) => user.id === parseInt(id)
+          );
+          setData(userDetails);
+        }
+      }
     }
-  }, [dispatch, userDetails]);
+  }, [dispatch]);
 
   return (
     <UserDetailsWrapper>
       <BackButton to="/user">Back</BackButton>
-      {userDetails && <UserInfo user={userDetails} />}
-      {!userDetails && <NotFound />}
+      {data && <UserInfo user={data} />}
+      {!data && <NotFound />}
     </UserDetailsWrapper>
   );
 }

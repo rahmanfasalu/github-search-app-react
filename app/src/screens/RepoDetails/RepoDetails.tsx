@@ -24,6 +24,8 @@ function RepoDetails({ match }: MatchProps): JSX.Element {
     return state.repos.items.find((repo: IRepo) => repo.id === parseInt(id));
   });
 
+  const [data, setData] = useState<IRepo>(repoDetails);
+
   useEffect(() => {
     if (!repoDetails) {
       let query = sessionStorage.getItem(`REPO_QUERY`);
@@ -34,6 +36,7 @@ function RepoDetails({ match }: MatchProps): JSX.Element {
           repoDetails = reposFromCache.find(
             (repo: IRepo) => repo.id === parseInt(id)
           );
+          setData(repoDetails);
         }
       }
     }
@@ -42,8 +45,8 @@ function RepoDetails({ match }: MatchProps): JSX.Element {
   return (
     <RepoDetailsWrapper>
       <BackButton to="/repo">Back</BackButton>
-      {repoDetails && <RepoInfo repo={repoDetails} />}
-      {!repoDetails && <NotFound />}
+      {data && <RepoInfo repo={data} />}
+      {!data && <NotFound />}
     </RepoDetailsWrapper>
   );
 }

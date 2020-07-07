@@ -34,6 +34,7 @@ function Repo(): JSX.Element {
 
   useEffect(() => {
     if (query) {
+      sessionStorage.setItem(`REPO_QUERY`, query);
       let result = sessionStorage.getItem(`REPO_${query}`);
       if (result) {
         const reposFromCache: IRepo[] = JSON.parse(result).items;
@@ -46,7 +47,6 @@ function Repo(): JSX.Element {
 
   useEffect(() => {
     //caching
-    sessionStorage.setItem(`REPO_QUERY`, JSON.stringify(query));
     sessionStorage.setItem(`REPO_${query}`, JSON.stringify(queryResponse));
     setRepos(queryResponse.items);
     setTotalCount(queryResponse.total_count);

@@ -33,6 +33,7 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     if (query) {
+      sessionStorage.setItem(`QUERY`, query);
       let result = sessionStorage.getItem(query);
       if (result) {
         const usersFromCache: IUser[] = JSON.parse(result).items;
